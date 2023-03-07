@@ -1,6 +1,6 @@
 set nocompatible              " required
+set backspace=indent,eol,start
 filetype off                  " required
-" set hlsearch
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -13,10 +13,15 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
+" 	" Github Copilot
+	Plugin 'github/copilot.vim'
+	" Airline
+	Plugin 'vim-airline/vim-airline'
 	" Bundle 'Valloric/YouCompleteMe'
 	Plugin 'easymotion/vim-easymotion'
+	" Surround
+	Plugin 'tpope/vim-surround'
 	Plugin 'haya14busa/incsearch.vim'
-	Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 	" Git Integration #
 	Plugin 'tpope/vim-fugitive'
 	" Line numbering
@@ -26,8 +31,8 @@ Plugin 'gmarik/Vundle.vim'
 	" File Browsing
 	Plugin 'scrooloose/nerdtree'
 	Plugin 'jistr/vim-nerdtree-tabs'
-	Plugin 'arcticicestudio/nord-vim'
 	" Color schemes
+	Plugin 'arcticicestudio/nord-vim'
 	Plugin 'jnurmine/Zenburn'
 	Plugin 'altercation/vim-colors-solarized'
 	" SimpylFold
@@ -37,6 +42,8 @@ Plugin 'gmarik/Vundle.vim'
 	Plugin 'nvie/vim-flake8'
 	" Emmet.vim
 	Plugin 'mattn/emmet-vim'
+	" Commentary
+	Plugin 'chrisbra/vim-commentary'
 " ...
 
 " All of your Plugins must be added before the following line
@@ -107,31 +114,21 @@ Plugin 'gmarik/Vundle.vim'
 	map g# <Plug>(incsearch-nohl-g#)
 
 " Easymotion
-	let mapleader=","
+	let mapleader = "\\"
 	let g:EasyMotion_do_mapping = 0 " Disable default mappings
-
-	" <Leader>f{char} to move to {char}
-	" map  <Leader>f <Plug>(easymotion-bd-f)
-	" nmap <Leader>f <Plug>(easymotion-overwin-f)
 
 	" s{char}{char} to move to {char}{char}
 		nmap s <Plug>(easymotion-overwin-f2)
 
 	" Move to line
-		map <Leader>L <Plug>(easymotion-bd-jk)
-		nmap <Leader>L <Plug>(easymotion-overwin-line)
+" map <Leader>L <Plug>(easymotion-bd-jk)
+		map L <Plug>(easymotion-overwin-line)
 
-	" Move to word
-		map  <Leader>w <Plug>(easymotion-bd-w)
-		nmap <Leader>w <Plug>(easymotion-overwin-w)
-
+	" Jump to word label
+		nmap W <Plug>(easymotion-bd-w)
 	" Jump to anywhere you want with minimal keystrokes, with just one key binding.
 	" `s{char}{label}`
-		nmap F <Plug>(easymotion-overwin-f)
-	" or
-	" `s{char}{char}{label}`
-	" Need one more keystroke, but on average, it may be more comfortable.
-		nmap f <Plug>(easymotion-overwin-f2)
+		nmap f <Plug>(easymotion-overwin-f)
 
 	" Turn on case-insensitive feature
 		let g:EasyMotion_smartcase = 1
@@ -150,4 +147,3 @@ Plugin 'gmarik/Vundle.vim'
 	let g:user_emmet_install_global = 0
 	autocmd FileType html,css EmmetInstall
 	let g:user_emmet_leader_key = '<C-Z>'
-
